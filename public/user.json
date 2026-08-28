@@ -1,0 +1,31 @@
+{
+    "users":[
+        {
+            "id": 1,
+            "name": "Alice",
+            "age": 30,
+            "contacts": {
+                "email": "cVb8M@example.com",
+                "phone": "123-456-7890"
+            }
+        },
+        {
+            "id": 2,
+            "name": "Bob",
+            "age": 25,
+            "contacts": {
+                "email": "Rw0EY@example.com",
+                "phone": "987-654-3210"
+            }
+        },
+        {
+            "id": 3,
+            "name": "Charlie",
+            "age": 35,
+            "contacts": {
+                "email": "LH4bG@example.com",
+                "phone": "555-555-5555"
+            }
+        }
+    ]
+}
