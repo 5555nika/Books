@@ -4,29 +4,28 @@ import { BookOutlined, UndoOutlined, EditOutlined, SaveOutlined } from '@ant-des
 import type { IBook } from "../types/types"
 
 interface BookFormProps {
-    initialValues?: IBook | null
-    onSave?: (updatedBook: IBook) => void
-    buttonText?: string
+    editForm?: IBook | null
+    onEdit?: (updatedBook: IBook) => void
 }
 
-export const BookForm = ({ initialValues, onSave, buttonText = 'To Add' }: BookFormProps) => {
+export const BookForm = ({ editForm, onEdit }: BookFormProps) => {
     const [form] = Form.useForm<IBook>()
 
     useEffect(() => {
-        if (initialValues) {
-            form.setFieldsValue(initialValues)
+        if (editForm) {
+            form.setFieldsValue(editForm)
         } else {
             form.resetFields()
         }
-    }, [initialValues, form])
+    }, [editForm, form])
 
     const onFinish = (values: IBook) => {
         try {
-            if (initialValues && onSave) {
+            if (editForm && onEdit) {
                 // Режим редактирования существующей книги
-                onSave({
+                onEdit({
                     ...values,
-                    id: initialValues.id,
+                    id: editForm.id,
                 })
                 return
             }
@@ -116,11 +115,11 @@ export const BookForm = ({ initialValues, onSave, buttonText = 'To Add' }: BookF
 
             <Form.Item>
                 <Space wrap>
-                    <Button type="primary" htmlType="submit" icon={initialValues ? <SaveOutlined /> : <BookOutlined />}>
-                        {buttonText}
+                    <Button type="primary" htmlType="submit" icon={editForm? <SaveOutlined /> : <BookOutlined />}>
+                        {editForm ? 'Edit' : 'Add'}
                     </Button>
 
-                    {!initialValues && (
+                    {!editForm && (
                         <>
                             <Button icon={<UndoOutlined />} onClick={handleReset}>
                                 Clear

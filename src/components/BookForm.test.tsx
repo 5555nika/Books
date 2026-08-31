@@ -50,7 +50,7 @@ describe('BookForm Component', () => {
       language: 'en',
     }
 
-    render(<BookForm initialValues={sampleBook} onSave={mockSave} buttonText="Save Changes" />)
+    render(<BookForm editForm={sampleBook} onEdit={mockSave} />)
 
     const saveBtn = screen.getByRole('button', { name: /Save Changes/i })
     fireEvent.click(saveBtn)

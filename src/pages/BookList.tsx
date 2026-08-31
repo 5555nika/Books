@@ -59,7 +59,7 @@ export const BookList = () => {
     }
 
     // 4. Сохранение отредактированной книги
-    const handleSaveEdit = (updatedBook: IBook) => {
+    const handleEdit = (updatedBook: IBook) => {
         try {
             const updatedBooks = books.map((item) =>
                 item.id === updatedBook.id ? updatedBook : item
@@ -100,14 +100,15 @@ export const BookList = () => {
         )
     }, [books, searchQuery])
 
-    // 6. Подсчет статистики в реальном времени
-    const totalPages = useMemo(() => {
-        return books.reduce((acc, b) => acc + (Number(b.page) || 0), 0)
-    }, [books])
-
-    const uniqueLanguages = useMemo(() => {
-        return new Set(books.map((b) => b.language)).size
-    }, [books])
+    const stats = useMemo(() => {
+    const totalPages = books.reduce((acc, b) => acc + (Number(b.page) || 0), 0);
+    const totalLanguages = new Set(books.map((b) => b.language)).size;
+    return {
+    totalBooks: books.length,
+    totalPages,
+    totalLanguages,
+    };
+}, [books]);
 
     // 7. Колонки таблицы Ant Design с сортировкой и фильтрами
     const columns: ColumnsType<IBook> = [
@@ -133,12 +134,6 @@ export const BookList = () => {
             title: 'Language',
             dataIndex: 'language',
             key: 'language',
-            filters: [
-                { text: 'English', value: 'en' },
-                { text: 'Turkish', value: 'tr' },
-                { text: 'Russian', value: 'ru' },
-            ],
-            onFilter: (value, record) => record.language === value,
             render: (language: string) => {
                 let color = 'blue' 
                 let text = 'English'
@@ -192,7 +187,7 @@ export const BookList = () => {
                         <Card hoverable style={{ borderRadius: 10 }}>
                             <Statistic 
                                 title="Total Pages" 
-                                value={totalPages} 
+                                value={stats.totalPages} 
                                 prefix={<FileTextOutlined style={{ color: '#52c41a' }} />} 
                             />
                         </Card>
@@ -201,7 +196,7 @@ export const BookList = () => {
                         <Card hoverable style={{ borderRadius: 10 }}>
                             <Statistic 
                                 title="Languages" 
-                                value={uniqueLanguages} 
+                                value={stats.totalLanguages} 
                                 prefix={<GlobalOutlined style={{ color: '#722ed1' }} />} 
                             />
                         </Card>
@@ -259,13 +254,7 @@ export const BookList = () => {
                     footer={null}
                     destroyOnClose
                 >
-                    {editForm && (
-                        <BookForm 
-                            initialValues={editForm} 
-                            onSave={handleSaveEdit} 
-                            buttonText="Save Changes" 
-                        />
-                    )}
+                    {editForm && (<BookForm editForm={editForm} onEdit={handleEdit} /> )}
                 </Modal>
             </Col>
         </Row>
