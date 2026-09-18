@@ -26,12 +26,8 @@ export const Navbar = () => {
             background: '#001529', 
             boxShadow: '0 2px 8px rgba(0,0,0,0.15)' 
             }}> 
-            <NavLink to={RoutesNames.BOOKS} style={getNavStyle}>
-                Add Book
-            </NavLink>
-            <NavLink to={RoutesNames.BOOKLIST} style={getNavStyle}>
-                My Books
-            </NavLink>
+            <NavLink to={RoutesNames.BOOKS} style={getNavStyle}>Add Book</NavLink>
+            <NavLink to={RoutesNames.BOOKLIST} style={getNavStyle}>My Books</NavLink>
         </div>
     )
 }

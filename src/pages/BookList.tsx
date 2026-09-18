@@ -90,14 +90,13 @@ export const BookList = () => {
             message.error('Failed to export books')
         }
     }
+
     const filteredBooks = useMemo(() => {
         if (!searchQuery.trim()) return books
         const query = searchQuery.toLowerCase().trim()
         return books.filter(
             (b) =>
-                b.title.toLowerCase().includes(query) ||
-                b.author.toLowerCase().includes(query)
-        )
+                b.title.toLowerCase().includes(query) || b.author.toLowerCase().includes(query))
     }, [books, searchQuery])
 
     const stats = useMemo(() => {
@@ -204,8 +203,7 @@ export const BookList = () => {
                 </Row>
 
                 {/* ГЛАВНАЯ КАРТОЧКА С ПОИСКОМ И ТАБЛИЦЕЙ */}
-                <Card 
-                    hoverable 
+                <Card hoverable 
                     style={{ borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}
                 >
                     <Title level={2} style={{ textAlign: 'center', marginBottom: 20 }}>
