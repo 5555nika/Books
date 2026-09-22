@@ -9,7 +9,7 @@ export const App = () => {
       <Layout.Header style={{ padding: '0', height: 'auto', lineHeight: 'normal'}}>
         <Navbar />
       </Layout.Header>
-      <Layout.Content  style={{ padding: '20px' }}>
+      <Layout.Content>
         <AppRouter />
       </Layout.Content>
       <Layout.Footer style={{ textAlign: 'center' }}>
