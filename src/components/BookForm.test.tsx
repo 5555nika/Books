@@ -52,7 +52,7 @@ describe('BookForm Component', () => {
 
     render(<BookForm editForm={sampleBook} onEdit={mockSave} />)
 
-    const saveBtn = screen.getByRole('button', { name: /Save Changes/i })
+    const saveBtn = screen.getByRole('button', { name: /Edit/i })
     fireEvent.click(saveBtn)
 
     await waitFor(() => {
