@@ -168,7 +168,7 @@ export const BookList = () => {
     ]
 
     return (
-        <Row justify="center" style={{ marginTop: 24, padding: '0 16px', marginBottom: 24 }}>
+        <Row justify="center" style={{ margin: '24 0', padding: '0 16px' }}>
             <Col xs={24} sm={22} md={20} lg={18}>
                 
                 {/* БЛОК СТАТИСТИКИ */}
